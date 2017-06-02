@@ -12,8 +12,8 @@ use Requests;
 
 class BVAMClient extends TokenlyAPI
 {
-    protected $availableApiBaseUrls = [];
-    protected $activeApiBaseIndex = 0;
+    public $availableApiBaseUrls = [];
+    public $activeApiBaseIndex = 0;
 
     function __construct($api_base_urls = null)
     {
@@ -232,7 +232,7 @@ class BVAMClient extends TokenlyAPI
      */
     public function returnBvamHashFromUrlOrFilename($string)
     {
-        preg_match("([T|C]{1}[1-9A-HJ-NP-Za-hi-z]+)", $string, $matches);
+        preg_match("([T|C]{1}[1-9A-HJ-NP-Za-hi-z]{20,}+)", $string, $matches);
         if (count($matches) > 0) {
             return $matches[0];
         } else {
